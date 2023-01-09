@@ -18,8 +18,7 @@ jobs:
       matrix:
         # Working: coldcard, lnd, bitcoin-core, mycelium-android, zap-android, simple-bitcoin-wallet, wasabi, sparrow, blockstream-green
         # WIP: trezor-firmware, bitbox02-firmware
-        project: [coldcard, coldcard-mk3, lnd, bitcoin-core, mycelium-android, zap-android, simple-bitcoin-wallet, wasabi, sparrow, blockstream-green, fulcrum,
-		electrs, cln, poncho, nostril]
+        project: [coldcard, coldcard-mk3, lnd, bitcoin-core, mycelium-android, zap-android, simple-bitcoin-wallet, wasabi, sparrow, blockstream-green, fulcrum, electrs, cln, poncho, nostril]
     steps:
       - name: Setup xvfb for video capture
         run: |
@@ -147,6 +146,7 @@ jobs:
         env:
           PROJECT: ${{ matrix.project }}
         run: |
+          make nvm
           REPO_ROOT_DIR=`pwd`
           cd ${PROJECT}
           VERSION=`perl -ne 'print "$1\n" if /^VERSION="?([^"]*)"?$/' artifacts.sh`
