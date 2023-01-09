@@ -28,9 +28,9 @@ TRIPLET                                 :=aarch64-linux-gnu
 export TRIPLET
 endif
 
-NODE_VERSION							:=v12.22.9
+NODE_VERSION							:=v18.13.0
 export NODE_VERSION
-NODE_ALIAS								:=v14
+NODE_ALIAS							:=v18.12.1
 export NODE_ALIAS
 PACKAGE_MANAGER							:=yarn
 export PACKAGE_MANAGER
