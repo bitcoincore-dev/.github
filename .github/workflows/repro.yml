@@ -266,7 +266,7 @@ jobs:
         run: |
           PATTERN="../artifacts/*/*tweet-entry.txt"
 
-          if ls $PATTERN 1> /dev/null 2>&1; then
+          #if ls $PATTERN 1> /dev/null 2>&1; then
               pip install -q -r requirements.txt
 
               for t in `ls $PATTERN` ; do
@@ -289,6 +289,6 @@ jobs:
 
                 python send_tweet.py tweet.txt $MP4_VIDEO_FILENAME $WEBM_VIDEO_URL
               done
-          else
-              echo "No new successful builds to tweet (or TWITTER_NAME not set in artifacts.sh)."
-          fi
+          #else
+          #    echo "No new successful builds to tweet (or TWITTER_NAME not set in artifacts.sh)."
+          #fi
