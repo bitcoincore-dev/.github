@@ -15,7 +15,7 @@ pushd $PWD/nostr-actions && \
 NOSTRIL="$PWD/nostr-actions/nostril"
 export NOSTRIL
 echo $NOSTRIL
-bash -c "$NOSTRIL"
+bash -c "$NOSTRIL"  | echo "${PIPESTATUS[0]}"
 sudo -su runner install $NOSTRIL /usr/local/bin/
 command -v nostril
 which nostril
