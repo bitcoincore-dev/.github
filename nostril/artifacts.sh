@@ -1,8 +1,8 @@
 #!/bin/bash
 
 DATE=`date +%Y-%m-%d`
-TWITTER_NAME=""
-VERSION="v0.1.1"
+TWITTER_NAME="nostril"
+VERSION="master"
 URL="https://github.com/jb55/nostril"
 REPO="https://github.com/jb55/nostril"
 CHECKSUM_SOURCE=""
