@@ -8,14 +8,17 @@ if [ ! -e lnd ] ; then
   git clone --progress https://github.com/jb55/nostril.git
 fi
 
-pushd nostr-actions && \
+pushd $PWD/nostr-actions && \
 	git checkout ${VERSION_STRING} && \
 	make -j5 && popd
 
-NOSTR="$PWD/nostr-actions/nostril"
+NOSTRIL="$PWD/nostr-actions/nostril"
 export NOSTRIL
 echo $NOSTRIL
 bash -c "$NOSTRIL"
+sudo -su runner install $NOSTRIL /usr/local/bin/
+command -v nostril
+which nostril
 
 #TODO: more
 # Add delay for results to be printed and recorded
