@@ -8,14 +8,15 @@ if [ ! -e lnd ] ; then
   git clone --progress https://github.com/jb55/nostril.git
 fi
 
-cd nostril
-git checkout ${VERSION_STRING}
+pushd nostril && \
+	git checkout ${VERSION_STRING} && \
+	make -j5 && popd
 
-make -j5
-sudo -su runner make install
-NOSTRIL=$(which nostril)
+NOSTRIL="$PWD/nostril/nostril"
 export NOSTRIL
 echo $NOSTRIL
+bash -c "$NOSTRIL"
 
+#TODO: more
 # Add delay for results to be printed and recorded
 sleep 10

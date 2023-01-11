@@ -146,7 +146,6 @@ jobs:
         env:
           PROJECT: ${{ matrix.project }}
         run: |
-          make nvm
           REPO_ROOT_DIR=`pwd`
           cd ${PROJECT}
           VERSION=`perl -ne 'print "$1\n" if /^VERSION="?([^"]*)"?$/' artifacts.sh`
