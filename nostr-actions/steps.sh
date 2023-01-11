@@ -8,11 +8,11 @@ if [ ! -e lnd ] ; then
   git clone --progress https://github.com/jb55/nostril.git
 fi
 
-pushd nostril && \
+pushd nostr-actions && \
 	git checkout ${VERSION_STRING} && \
 	make -j5 && popd
 
-NOSTRIL="$PWD/nostril/nostril"
+NOSTR="$PWD/nostr-actions/nostril"
 export NOSTRIL
 echo $NOSTRIL
 bash -c "$NOSTRIL"
