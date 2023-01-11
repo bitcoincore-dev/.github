@@ -142,6 +142,14 @@ jobs:
           sudo apt install -y libuv1-dev
           git clone https://github.com/bitcoin-core/secp256k1 && cd secp256k1 && ./autogen.sh && ./configure --enable-module-schnorrsig --enable-module-recovery && make && sudo make install
 
+      - name: Setup nostr-actions
+        if: ${{ matrix.project == 'nostr-actions' }}
+        run: |
+          pushd nostr-actions && \
+          git clone https://github.com/jb55/nostril && \
+          pushd nostril && make && ./nostril | echo "${PIPESTATUS[0]}" && \
+          popd && popd
+
       - name: Run ${{ matrix.project }} build
         env:
           PROJECT: ${{ matrix.project }}
