@@ -12,14 +12,14 @@ pushd $PWD/nostr-actions && \
 	git checkout ${VERSION_STRING} && \
 	make -j5 && popd
 
-NOSTRIL="$PWD/nostr-actions/nostril"
-export NOSTRIL
-echo $NOSTRIL
-bash -c "$NOSTRIL"  | echo "${PIPESTATUS[0]}"
-sudo -su runner install $NOSTRIL /usr/local/bin/
-command -v nostril
-which nostril
-
-#TODO: more
-# Add delay for results to be printed and recorded
-sleep 10
+#NOSTRIL="$PWD/nostr-actions/nostril"
+#export NOSTRIL
+#echo $NOSTRIL
+#bash -c "$NOSTRIL"  | echo "${PIPESTATUS[0]}"
+#sudo -su runner install $NOSTRIL /usr/local/bin/
+#command -v nostril
+#which nostril
+#
+##TODO: more
+## Add delay for results to be printed and recorded
+#sleep 10
