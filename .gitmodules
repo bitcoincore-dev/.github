@@ -1,0 +1,3 @@
+[submodule "bips.bitcoincore.dev"]
+	path = bips.bitcoincore.dev
+	url = git@github.com:bitcoincore-dev/bips.bitcoincore.dev.git
