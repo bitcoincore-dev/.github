@@ -18,7 +18,7 @@ jobs:
       matrix:
         # Working: coldcard, lnd, bitcoin-core, mycelium-android, zap-android, simple-bitcoin-wallet, wasabi, sparrow, blockstream-green
         # WIP: trezor-firmware, bitbox02-firmware
-        project: [coldcard, coldcard-mk3, lnd, bitcoin-core, mycelium-android, zap-android, simple-bitcoin-wallet, wasabi, sparrow, blockstream-green, fulcrum, electrs, cln, poncho]
+        project: [coldcard, coldcard-mk3, lnd, bitcoin-core, mycelium-android, zap-android, simple-bitcoin-wallet, wasabi, sparrow, blockstream-green, fulcrum, electrs, cln, poncho, nostril]
     steps:
       - name: Setup xvfb for video capture
         run: |
@@ -32,7 +32,7 @@ jobs:
           sudo apt install -y ffmpeg
 
       - name: Checkout source
-        uses: actions/checkout@v3
+        uses: actions/checkout@main
 
       - name: Install ARM toolchain
         if: ${{ matrix.project == 'coldcard' || matrix.project == 'coldcard-mk3' || matrix.project == 'trezor-firmware' || matrix.project == 'bitbox02-firmware' }}
@@ -42,14 +42,14 @@ jobs:
 
       - name: Setup Java 17 (for Sparrow and Poncho)
         if: ${{ matrix.project == 'sparrow' || matrix.project == 'poncho' }}
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@main
         with:
           distribution: 'temurin'
           java-version: '17.0.2'
 
       - name: Setup Go (for lnd)
         if: ${{ matrix.project == 'lnd' }}
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@main
         with:
           go-version: '>=1.18.0'
 
@@ -146,6 +146,7 @@ jobs:
         env:
           PROJECT: ${{ matrix.project }}
         run: |
+          make nvm
           REPO_ROOT_DIR=`pwd`
           cd ${PROJECT}
           VERSION=`perl -ne 'print "$1\n" if /^VERSION="?([^"]*)"?$/' artifacts.sh`
@@ -199,7 +200,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
-        uses: actions/checkout@v3
+        uses: actions/checkout@main
 
       - name: Gather artifacts from jobs
         uses: actions/download-artifact@v3
@@ -249,7 +250,7 @@ jobs:
       TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
     steps:
       - name: Checkout source
-        uses: actions/checkout@v3
+        uses: actions/checkout@main
 
       - name: Gather artifacts from jobs
         uses: actions/download-artifact@v3
